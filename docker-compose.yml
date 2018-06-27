@@ -1,0 +1,20 @@
+version: "2"
+services:
+    app:
+      build:
+        context: .
+        args:                                                                      
+            - npm_user=circleci  
+            - npm_pass=circleci22
+            - npm_email=gareth.evans@eu.m3.com
+            - npm_registry=https://npm.m3-dev.co.uk
+      command: yarn run wdio --host selenium
+      depends_on:
+        - selenium
+      
+
+    selenium:
+      image: selenium/standalone-chrome
+      ports:
+        - "4444:4444"
+     
